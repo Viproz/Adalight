@@ -113,7 +113,7 @@ bool screen_samples::create_resources()
 	_pixelOffsets.resize(_displays.size());
 
 	// Calculate the sub-sampled pixel offsets
-	for (size_t i = 0; i < _displays.size(); ++i)
+	for (size_t i = 0; i < _parameters.displays.size(); ++i)
 	{
 		const auto& display = _parameters.displays[i];
 
@@ -123,7 +123,7 @@ bool screen_samples::create_resources()
 		{
 			auto& offsets = _pixelOffsets[i][j];
 			const auto& led = display.positions[j];
-			const auto& displayBounds = _displays[i].bounds;
+			const auto& displayBounds = _displays[display.screenID].bounds;
 			const double rangeX = (static_cast<double>(displayBounds.cx) / static_cast<double>(display.horizontalCount));
 			const double stepX = rangeX / static_cast<double>(pixel_samples);
 			const double startX = (rangeX * static_cast<double>(led.x)) + (stepX / 2.0);
@@ -228,10 +228,10 @@ bool screen_samples::take_samples(serial_buffer& serial)
 	auto output = serial.begin();
 	auto previousColor = _previousColors.begin();
 
-	for (size_t i = 0; i < _displays.size(); ++i)
+	for (size_t i = 0; i < _parameters.displays.size(); ++i)
 	{
 		const auto& display = _parameters.displays[i];
-		const auto& device = _displays[i];
+		const auto& device = _displays[display.screenID];
 
 		for (size_t j = 0; j < display.positions.size(); ++j)
 		{

@@ -64,6 +64,7 @@ struct settings
 	{
 		size_t horizontalCount;
 		size_t verticalCount;
+		size_t screenID;
 
 		std::vector<led_pos> positions;
 	};

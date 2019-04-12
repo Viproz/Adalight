@@ -43,6 +43,7 @@ settings::settings(std::wstring&& configFilePath)
 
 					display.horizontalCount = static_cast<size_t>(displayObject.at(L"horizontalCount").as_integer());
 					display.verticalCount = static_cast<size_t>(displayObject.at(L"verticalCount").as_integer());
+					display.screenID = static_cast<size_t>(displayObject.at(L"screenID").as_integer());
 
 					const auto& positionArray = displayEntry.at(L"positions").as_array();
 
