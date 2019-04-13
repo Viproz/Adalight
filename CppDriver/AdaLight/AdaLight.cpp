@@ -45,6 +45,7 @@
 #include <cmath>
 #include <string>
 #include <sstream>
+#include <iostream>
 
 #include "settings.h"
 #include "gamma_correction.h"
@@ -86,7 +87,8 @@ static std::shared_ptr<update_timer> get_timer()
 			}
 
 			// Update the LED strip.
-			samples.take_samples(serial);
+			if(!samples.take_samples(serial))
+				std::cout << "Take sample fail.\n";
 			port.send(serial);
 		}, [](std::shared_ptr<update_timer> /*timer*/)
 		{
