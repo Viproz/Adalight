@@ -76,7 +76,7 @@ struct settings
 
 		{
 			// Screen 0: 10 LEDs across, 5 LEDs down
-			10, 5,
+			10, 5, 0,
 			{
 				// Bottom edge, left half
 				{ 3, 4 }, { 2, 4 }, { 1, 4 },
