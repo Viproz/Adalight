@@ -25,6 +25,15 @@ bool screen_samples::create_resources()
 	{
 		return false;
 	}
+	
+	// Get the highest screen ID parameter
+	size_t screenNumbers = 0;
+	for (size_t i = 0; i < _parameters.displays.size(); ++i)
+	{
+		if(_parameters.displays[i].screenID + 1 > screenNumbers) {
+			screenNumbers = _parameters.displays[i].screenID + 1;
+		}
+	}
 
 	_displays.reserve(_parameters.displays.size());
 
