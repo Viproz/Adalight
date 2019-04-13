@@ -115,6 +115,7 @@ settings::settings(std::wstring&& configFilePath)
 
 				displayEntry[L"horizontalCount"] = display.horizontalCount;
 				displayEntry[L"verticalCount"] = display.verticalCount;
+				displayEntry[L"screenID"] = display.screenID;
 
 				auto& positionArray = displayEntry[L"positions"];
 
