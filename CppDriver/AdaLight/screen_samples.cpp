@@ -28,23 +28,22 @@ bool screen_samples::create_resources()
 	
 	// Get the highest screen ID parameter
 	size_t screenNumbers = 0;
-	for (size_t i = 0; i < _parameters.displays.size(); ++i)
-	{
+	for (size_t i = 0; i < _parameters.displays.size(); ++i) {
 		if(_parameters.displays[i].screenID + 1 > screenNumbers) {
 			screenNumbers = _parameters.displays[i].screenID + 1;
 		}
 	}
 
-	_displays.reserve(_parameters.displays.size());
+	_displays.reserve(screenNumbers);
 
 	// Get the display dimensions and devices.
 	IDXGIAdapter1Ptr adapter;
 
-	for (UINT i = 0; _displays.size() < _parameters.displays.size() && SUCCEEDED(_factory->EnumAdapters1(i, &adapter)); ++i)
+	for (UINT i = 0; _displays.size() < screenNumbers && SUCCEEDED(_factory->EnumAdapters1(i, &adapter)); ++i)
 	{
 		IDXGIOutputPtr output;
 
-		for (UINT j = 0; _displays.size() < _parameters.displays.size() && SUCCEEDED(adapter->EnumOutputs(j, &output)); ++j)
+		for (UINT j = 0; _displays.size() < screenNumbers && SUCCEEDED(adapter->EnumOutputs(j, &output)); ++j)
 		{
 			IDXGIOutput1Ptr output1(output);
 			DXGI_OUTPUT_DESC outputDescription;
